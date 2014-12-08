@@ -1,0 +1,9 @@
+{
+  "name": "org.javafx.aria",
+  "description": "Ariafx",
+  "path": "/opt/Aria/aria_port",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://akleemhcondmnldaaapmkalfoopkejdf/"
+  ]
+}
