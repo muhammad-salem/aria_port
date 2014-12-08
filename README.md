@@ -8,6 +8,4 @@ convert json object to paramters for [aria] (https://github.com/salemebo/aria)
 
 written in c++,
 used lib for json 
-[RapidJSON GitHub](https://github.com/miloyip/rapidjson/)
-
-[RapidJSON Documentation](http://miloyip.github.io/rapidjson/)
+[RapidJSON GitHub](https://github.com/miloyip/rapidjson/) [RapidJSON Documentation](http://miloyip.github.io/rapidjson/)
