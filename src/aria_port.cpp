@@ -27,6 +27,7 @@
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
 
+
 using namespace std;
 using namespace rapidjson;
 using namespace Utility;
@@ -93,25 +94,26 @@ string getParamter(string msg) {
 
 	 if (doc.HasMember("cookies")) {
 		 if(doc["cookies"].GetStringLength() > 0){
+			 
+		 	const char* folder = getenv("TMPDIR");
+		 		if (folder == 0)
+		 		    folder = "/tmp/ariafxXXXXXX";
+		 		
+		 	cout << folder << endl;
+		 	char fn[70];
+		 	strcpy(fn, folder);
+		 	
+		 	mkstemp(fn);
+		 	cout << fn << endl;
+		 	
+		 	ofstream myfile;
+		 	myfile.open (fn);
+		 	myfile << doc["cookies"].GetString();
+		 	myfile.close();
 
-	 //		 // create file
-	 //		 char name[L_tmpnam];
-	 //		 //tmpnam(name);  // Get temp name
-	 //		 mkstemp(name);
-	 //		 
-	 //		 //		sendMessage("{\"name\": " + string(name) +"\" }");
-	 //		 
-	 //		 fstream file(name);
-	 //	
-	 //		 file << cookies;
-	 //	
-	 //		 //remove(name);
-		
-			 // [--cookie=COOKIE] [--cookie-file=CFILE]
-			 param += " --cookie=\"";
-			 param += doc["cookies"].GetString();
+			 param += " --cookie-file=\"";
+			 param += fn;
 			 param +="\"";
-	 //		 param += " --cookie-file" + string(name);
 		 }
 		 
 	 }
@@ -188,19 +190,13 @@ string replace(string str) {
 
 int main(int argc, char* argv[]) {
 
-//	ofstream file("/home/salem/Desktop/rr.txt", ios::app);
 	std::string msg = readMessage();
-	
 	// json job in c++
 	string paramter = getParamter(msg);
-//	file << paramter << endl << flush;
 
 	string str = "ariafx ";
-//	str += doc["url"].GetString();
 	str += paramter;
 	
-//	file << str.data() << endl << flush;
 	system(str.data());
-//	file.close();
 	return 0;
 }
